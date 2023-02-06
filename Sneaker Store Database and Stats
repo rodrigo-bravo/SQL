@@ -1,0 +1,43 @@
+--Create a sneaker store database
+
+CREATE TABLE store (id INTEGER PRIMARY KEY, brand TEXT, sneaker TEXT, size INTEGER, type TEXT, price INTEGER, popularity INTEGER);
+
+INSERT INTO store VALUES (1, "Nike", "Air Max", 7, "Men's", 112.99, 78);
+INSERT INTO store VALUES (2, "Nike", "Air Jordan 1 Retro High", 9, "Women's", 179.99, 83);
+INSERT INTO store VALUES (3, "Vans", "Old Skool", 11, "Unisex", 79.95, 91);
+INSERT INTO store VALUES (4, "Adidas", "Stan Smith", 6, "Women's", 69.94, 89);
+INSERT INTO store VALUES (5, "Common Project", "Achilles", 8, "Unisex", 410.00, 76);
+INSERT INTO store VALUES (6, "Adidas", "Samba", 12, "Unisex", 85.34, 90);
+INSERT INTO store VALUES (7, "Nike", "Air Jordan 11 Retro", 12, "Unisex", 225.97, 93);
+INSERT INTO store VALUES (8, "New Balance", "770", 10, "Unisex", 134.98, 74);
+INSERT INTO store VALUES (9, "Asics", "Gel-Kayano 14", 9, "Women's", 208.77, 68);
+INSERT INTO store VALUES (10, "Saloman", "ACS Pro Advanced Lunar Rock Goji", 6.5, "Men's", 292, 74);
+INSERT INTO store VALUES (11, "New Balance", "550 'White Green'", 8.5, "Women's", 202.91, 76);
+INSERT INTO store VALUES (12, "Reebok", "Ex-O-Fit", 11, "Men's", 90, 86);
+INSERT INTO store VALUES (13, "Nike", "Air Force 1", 9, "Unisex", 110, 94);
+INSERT INTO store VALUES (14, "Converse", "Chuck Taylor All Star High Top ", 8, "Unisex", 93.99, 96);
+INSERT INTO store VALUES (15, "Puma", "Smash V2", 6, "Men's", 62.90, 83);
+
+--display sneaker store items ordered by price from highest to lowest.
+select * from store
+order by price desc;
+
+--what is the average price for unisex type sneakers?
+select avg(price) "avg unisex sneaker price"
+from store
+where type= 'Unisex'; --Average price is $162.89.
+
+--list the 5 popular items
+select sneaker, price, popularity
+from store
+order by popularity desc
+limit 5;
+
+--what is the average price of these top 5 most popular items?
+with popular_items as(
+select sneaker, price, popularity
+from store
+order by popularity desc
+limit 5)
+select avg(price)
+from popular_items; --Average price is $119.05.
