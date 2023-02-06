@@ -22,6 +22,10 @@ INSERT INTO store VALUES (15, "Puma", "Smash V2", 6, "Men's", 62.90, 83);
 select * from store
 order by price desc;
 
+--what is the average price of the sneakers?
+select avg(price) "avg sneaker price"
+from store; --Average price is $157.32.
+
 --what is the average price for unisex type sneakers?
 select avg(price) "avg unisex sneaker price"
 from store
