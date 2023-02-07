@@ -88,6 +88,8 @@ where speed = (select max(speed) from marvels);
 select name, height_m, durability
 from marvels;
 
+--count number of characters within each durability level, but only those levels that contain more
+--than six characters.
 select count(*) as count, alignment,
 case 
     when durability <3 then 'Low'
@@ -98,8 +100,7 @@ from marvels
 group by durability_indicator
 having count(*)>6;
 
---find average popularity of given alignment grouped by durability index
+--find average popularity grouped by fighting skill index
 select fighting_skills, count(*) as count, avg(popularity) as avg_popularity
 from marvels
 group by fighting_skills;
-
