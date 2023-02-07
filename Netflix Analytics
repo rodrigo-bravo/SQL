@@ -1,0 +1,29 @@
+#In this SQL code, I'm querying a database that's holding Netflix data to answer questions.
+#The SQL dialect is PostgreSQL.
+
+#1. How many movie titles are there in the database? (movies only, not tv shows) 
+SELECT count(*) 
+FROM "RodrigoBravo/Netflix"."netflix_titles_info"
+WHERE type='Movie';
+
+#2. When was the most recent batch of tv shows and/or movies added to the database? 
+SELECT max(date(date_added)) as newest_data_added
+FROM "RodrigoBravo/Netflix"."netflix_titles_info";
+
+#3. List all the movies and tv shows in alphabetical order. 
+SELECT title
+FROM "RodrigoBravo/Netflix"."netflix_titles_info"
+ORDER BY title asc;
+
+#4. Who was the Director for the movie Nightbooks? 
+SELECT director
+FROM "RodrigoBravo/Netflix"."netflix_titles_info" a
+LEFT JOIN  "RodrigoBravo/Netflix"."netflix_people" b
+ON a.show_id = b.show_id
+where a.title = 'Nightbooks'
+
+#5. What is the oldest movie in the database and what year was it made? 
+SELECT title, release_year
+FROM "RodrigoBravo/Netflix"."netflix_titles_info"
+WHERE type='Movie'
+AND release_year <= (SELECT MIN(release_year) FROM "RodrigoBravo/Netflix"."netflix_titles_info" WHERE type = 'Movie'); 
