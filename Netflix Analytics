@@ -7,7 +7,7 @@ FROM "RodrigoBravo/Netflix"."netflix_titles_info"
 WHERE type='Movie';
 
 #2. When was the most recent batch of tv shows and/or movies added to the database? 
-SELECT max(date(date_added)) as newest_data_added
+SELECT MAX(date(date_added)) as newest_data_added
 FROM "RodrigoBravo/Netflix"."netflix_titles_info";
 
 #3. List all the movies and tv shows in alphabetical order. 
