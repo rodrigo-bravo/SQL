@@ -83,8 +83,7 @@ where popularity = (select max(popularity) from marvels);
 --look at other features in relation to popularity
 select name, alignment, speed, popularity
 from marvels
-where speed = (select max(speed) from marvels);
--- no particular correlation
+where speed = (select max(speed) from marvels); 
 
 select name, height_m, durability
 from marvels;
